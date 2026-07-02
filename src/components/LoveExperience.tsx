@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState, createContext, useContext } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import confetti from "canvas-confetti";
-import { Heart, Gift, X, Maximize2, ChevronDown } from "lucide-react";
+import { Heart, Gift, X, Play, ChevronDown } from "lucide-react";
 import { loveConfig } from "@/config/love";
 import { BackgroundFX } from "./BackgroundFX";
 import { CursorHearts } from "./CursorHearts";
@@ -364,7 +364,7 @@ function PhotoGallery() {
 function VideoMemories() {
   const videos = loveConfig.videos;
   return (
-    <Section id="videos" title="Video Memories" subtitle="Little films of us.">
+    <Section id="videos" title="Video Memories" subtitle="Little films of us — press play, fall in love again.">
       {videos.length === 0 ? (
         <div className="mx-auto max-w-2xl glass rounded-2xl p-10 text-center">
           <p className="font-serif-display text-lg text-foreground/70">
@@ -373,7 +373,10 @@ function VideoMemories() {
           </p>
         </div>
       ) : (
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2">
+        <div
+          className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2"
+          style={{ perspective: "1400px" }}
+        >
           {videos.map((v, i) => (
             <VideoCard key={i} src={v.src} poster={v.poster} index={i} />
           ))}
@@ -395,31 +398,77 @@ function VideoCard({ src, poster, index }: { src: string; poster?: string; index
   }, [inView]);
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 60, rotateX: -15 }}
+      whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.8 }}
-      className="group relative overflow-hidden rounded-3xl shadow-[var(--shadow-soft)]"
+      transition={{ duration: 0.9, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+      className="preserve-3d"
     >
-      <video
-        ref={ref}
-        src={src}
-        poster={poster}
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        className="aspect-video w-full object-cover"
-      />
-      <button
-        onClick={() => open(src, poster, `Memory ${index + 1}`)}
-        className="absolute inset-0 grid place-items-center bg-black/0 text-white opacity-0 transition-all group-hover:bg-black/40 group-hover:opacity-100"
-        aria-label="Play fullscreen"
-      >
-        <span className="grid h-16 w-16 place-items-center rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-glow)]">
-          <Maximize2 className="h-5 w-5" />
-        </span>
-      </button>
+      <Tilt3D max={14} scale={1.03} className="rounded-3xl">
+        <div
+          className="group relative overflow-hidden rounded-3xl shadow-[var(--shadow-soft)]"
+          style={{
+            background:
+              "linear-gradient(135deg, oklch(0.85 0.14 350 / 0.35), oklch(0.85 0.14 85 / 0.35))",
+            padding: "2px",
+          }}
+        >
+          <div className="relative overflow-hidden rounded-[calc(1.5rem-2px)]">
+            <video
+              ref={ref}
+              src={src}
+              poster={poster}
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              className="aspect-video w-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.06]"
+            />
+            {/* cinematic gradient overlay */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 opacity-70 transition-opacity duration-500 group-hover:opacity-40"
+              style={{
+                background:
+                  "linear-gradient(180deg, transparent 40%, oklch(0.2 0.05 340 / 0.55) 100%)",
+              }}
+            />
+            {/* sheen */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -inset-[2px] opacity-0 transition-opacity duration-700 group-hover:opacity-100"
+              style={{
+                background:
+                  "linear-gradient(115deg, transparent 40%, oklch(1 0 0 / 0.18) 50%, transparent 60%)",
+              }}
+            />
+            {/* label */}
+            <div className="pointer-events-none absolute bottom-4 left-5 right-5 flex items-end justify-between">
+              <div>
+                <p className="font-script text-3xl text-white drop-shadow-lg">
+                  Memory {String(index + 1).padStart(2, "0")}
+                </p>
+                <p className="mt-1 font-serif-display text-xs uppercase tracking-[0.35em] text-white/80">
+                  Press play
+                </p>
+              </div>
+            </div>
+            {/* play button */}
+            <button
+              onClick={() => open(src, poster, `Memory ${index + 1}`)}
+              className="absolute inset-0 grid place-items-center bg-black/0 text-white transition-all duration-500 group-hover:bg-black/25"
+              aria-label="Play fullscreen"
+            >
+              <span
+                className="grid h-20 w-20 translate-y-2 scale-90 place-items-center rounded-full bg-primary text-primary-foreground opacity-0 shadow-[var(--shadow-glow)] transition-all duration-500 group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100"
+                style={{ backdropFilter: "blur(6px)" }}
+              >
+                <Play className="h-7 w-7 fill-current" />
+              </span>
+            </button>
+          </div>
+        </div>
+      </Tilt3D>
     </motion.div>
   );
 }
