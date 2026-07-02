@@ -1,8 +1,23 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // Ambient background: stars, floating hearts, sparkles, petals, butterflies
 export function BackgroundFX() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [floaters, setFloaters] = useState<
+    { left: string; bottom: string; anim: string; emoji: string }[]
+  >([]);
+
+  useEffect(() => {
+    const emojis = ["❤️", "🌸", "✨", "🦋", "💗", "🌹"];
+    setFloaters(
+      Array.from({ length: 18 }).map((_, i) => ({
+        left: `${(i * 7 + 5) % 100}%`,
+        bottom: `-${Math.random() * 20}%`,
+        anim: `rise ${18 + Math.random() * 14}s linear ${Math.random() * -20}s infinite`,
+        emoji: emojis[i % emojis.length],
+      })),
+    );
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -70,18 +85,18 @@ export function BackgroundFX() {
       />
       {/* Floating hearts */}
       <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden>
-        {Array.from({ length: 14 }).map((_, i) => (
+        {floaters.map((f, i) => (
           <span
             key={i}
             className="absolute select-none text-2xl opacity-60"
             style={{
-              left: `${(i * 7 + 5) % 100}%`,
-              bottom: `-${Math.random() * 20}%`,
-              animation: `rise ${18 + Math.random() * 14}s linear ${Math.random() * -20}s infinite`,
+              left: f.left,
+              bottom: f.bottom,
+              animation: f.anim,
               filter: "drop-shadow(0 0 10px oklch(0.85 0.18 15 / 0.6))",
             }}
           >
-            {["❤️", "🌸", "✨", "🦋", "💗", "🌹"][i % 6]}
+            {f.emoji}
           </span>
         ))}
       </div>
