@@ -4,9 +4,9 @@ import { Moon, Sun } from "lucide-react";
 export function ThemeToggle() {
   const [dark, setDark] = useState(false);
   useEffect(() => {
-    const prefers = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const saved = localStorage.getItem("bday-theme");
-    const isDark = saved ? saved === "dark" : prefers;
+    // Default to dark mode unless the user has explicitly chosen light.
+    const isDark = saved ? saved === "dark" : true;
     setDark(isDark);
     document.documentElement.classList.toggle("dark", isDark);
   }, []);
