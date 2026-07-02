@@ -269,27 +269,31 @@ function PhotoGallery() {
     <Section id="photos" title="Our Little Moments" subtitle="A polaroid album of us.">
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {loveConfig.photos.map((p, i) => (
-          <motion.button
+          <motion.div
             key={i}
-            onClick={() => setActive(i)}
-            initial={{ opacity: 0, y: 30, rotate: 0 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0, rotate: rotations[i] }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.7, delay: i * 0.05 }}
-            whileHover={{ rotate: 0, y: -8, scale: 1.03 }}
-            className="group cursor-pointer rounded-sm bg-cream p-3 pb-8 shadow-[0_20px_50px_-15px_oklch(0.4_0.1_340/0.4)] transition-shadow hover:shadow-[var(--shadow-glow)]"
-            style={{ background: "oklch(0.99 0.01 80)" }}
           >
-            <div className="aspect-[4/5] overflow-hidden rounded-sm">
-              <img
-                src={p.src}
-                alt={p.caption}
-                loading="lazy"
-                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-            </div>
-            <p className="mt-4 text-center font-script text-2xl text-primary">{p.caption}</p>
-          </motion.button>
+            <Tilt3D max={18} scale={1.06} className="rounded-sm">
+              <button
+                onClick={() => setActive(i)}
+                className="group block w-full cursor-pointer rounded-sm p-3 pb-8 text-left shadow-[0_20px_50px_-15px_oklch(0.4_0.1_340/0.4)] transition-shadow hover:shadow-[var(--shadow-glow)]"
+                style={{ background: "oklch(0.99 0.01 80)" }}
+              >
+                <div className="aspect-[4/5] overflow-hidden rounded-sm">
+                  <img
+                    src={p.src}
+                    alt={p.caption}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                </div>
+                <p className="mt-4 text-center font-script text-2xl text-primary">{p.caption}</p>
+              </button>
+            </Tilt3D>
+          </motion.div>
         ))}
       </div>
 
