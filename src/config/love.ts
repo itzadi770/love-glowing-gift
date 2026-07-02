@@ -1,5 +1,3 @@
-import memory01 from "@/assets/memory-01.mp4.asset.json";
-
 // ✨ EDIT ME — All personal content lives here.
 export const loveConfig = {
   herName: "My Love",
@@ -29,7 +27,7 @@ Happy Birthday, my forever girl. ❤️`,
 
   // Drop videos into public/videos and list them here
   videos: [
-    { src: memory01.url },
+    { src: "/videos/memory-01.mp4" },
   ] as Array<{ src: string; poster?: string }>,
 
   // Drop a song into public/music and set filename here
