@@ -80,9 +80,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Happy Birthday, My Love ❤️" },
       { name: "description", content: "A luxury digital love letter — for the most beautiful person in my life." },
       { property: "og:title", content: "Happy Birthday, My Love ❤️" },
-      { property: "og:description", content: "A cinematic, romantic birthday experience." },
+      { property: "og:description", content: "A luxury digital love letter — for the most beautiful person in my life." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Happy Birthday, My Love ❤️" },
+      { name: "twitter:description", content: "A luxury digital love letter — for the most beautiful person in my life." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f32dbcb8-3b0b-4349-908d-42bd2b9d1c7d/id-preview-ee4e3fd9--a9fd67a6-e553-40e3-8cc7-b04c93cf5eac.lovable.app-1782998845891.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f32dbcb8-3b0b-4349-908d-42bd2b9d1c7d/id-preview-ee4e3fd9--a9fd67a6-e553-40e3-8cc7-b04c93cf5eac.lovable.app-1782998845891.png" },
     ],
     links: [
       {
