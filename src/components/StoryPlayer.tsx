@@ -127,8 +127,8 @@ export function StoryPlayer({ src, poster, title = "Our Story", onClose }: Props
             className="pointer-events-none absolute inset-x-0 top-0 flex items-center justify-between bg-gradient-to-b from-black/80 to-transparent p-5 sm:p-8"
           >
             <div className="pointer-events-auto flex items-center gap-3">
-              <span className="font-script text-3xl font-bold tracking-[0.1em] text-primary drop-shadow-[0_0_10px_oklch(0.55_0.22_27/0.7)]">
-                N
+              <span className="font-script text-4xl text-primary drop-shadow-[0_0_10px_oklch(0.78_0.16_350/0.7)]">
+                ❤
               </span>
               <span className="font-sans text-sm uppercase tracking-[0.4em] text-white/70">
                 {title}
@@ -150,7 +150,7 @@ export function StoryPlayer({ src, poster, title = "Our Story", onClose }: Props
               aria-label="Play"
               className="absolute inset-0 grid place-items-center"
             >
-              <span className="grid h-20 w-20 place-items-center rounded-full bg-primary text-primary-foreground shadow-[0_0_60px_oklch(0.55_0.22_27/0.8)]">
+              <span className="grid h-20 w-20 place-items-center rounded-full bg-primary text-primary-foreground shadow-[0_0_60px_oklch(0.78_0.16_350/0.8)]">
                 <Play className="h-8 w-8 fill-current" />
               </span>
             </button>
@@ -168,11 +168,11 @@ export function StoryPlayer({ src, poster, title = "Our Story", onClose }: Props
               className="group relative h-1.5 w-full cursor-pointer rounded-full bg-white/20 transition-[height] hover:h-2.5"
             >
               <div
-                className="absolute inset-y-0 left-0 rounded-full bg-primary shadow-[0_0_12px_oklch(0.55_0.22_27/0.9)]"
+                className="absolute inset-y-0 left-0 rounded-full bg-primary shadow-[0_0_12px_oklch(0.78_0.16_350/0.9)]"
                 style={{ width: `${progress}%` }}
               />
               <div
-                className="absolute top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary opacity-0 shadow-[0_0_10px_oklch(0.55_0.22_27/0.9)] transition-opacity group-hover:opacity-100"
+                className="absolute top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary opacity-0 shadow-[0_0_10px_oklch(0.78_0.16_350/0.9)] transition-opacity group-hover:opacity-100"
                 style={{ left: `${progress}%` }}
               />
             </div>
