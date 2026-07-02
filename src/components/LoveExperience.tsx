@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, createContext, useContext } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import confetti from "canvas-confetti";
 import { Heart, Gift, X, Maximize2, ChevronDown } from "lucide-react";
@@ -8,10 +8,18 @@ import { CursorHearts } from "./CursorHearts";
 import { MusicPlayer } from "./MusicPlayer";
 import { ThemeToggle } from "./ThemeToggle";
 import { Tilt3D } from "./Tilt3D";
+import { StoryPlayer } from "./StoryPlayer";
+
+type StoryCtx = { open: (src: string, poster?: string, title?: string) => void };
+const StoryContext = createContext<StoryCtx>({ open: () => {} });
+const useStory = () => useContext(StoryContext);
 
 export function LoveExperience() {
+  const [story, setStory] = useState<{ src: string; poster?: string; title?: string } | null>(null);
+  const open = (src: string, poster?: string, title?: string) => setStory({ src, poster, title });
   return (
-    <main className="relative">
+    <StoryContext.Provider value={{ open }}>
+      <main className="relative">
       <div className="aurora" aria-hidden><span /></div>
       <BackgroundFX />
       <CursorHearts />
@@ -28,14 +36,28 @@ export function LoveExperience() {
       <Reasons />
       <Surprise />
       <Ending />
-    </main>
+      <StoryPlayer
+        src={story?.src ?? null}
+        poster={story?.poster}
+        title={story?.title}
+        onClose={() => setStory(null)}
+      />
+      </main>
+    </StoryContext.Provider>
   );
 }
 
 /* --------------------------------- HERO --------------------------------- */
 function Hero() {
-  const scrollNext = () =>
-    document.getElementById("letter")?.scrollIntoView({ behavior: "smooth" });
+  const { open } = useStory();
+  const playStory = () => {
+    const first = loveConfig.videos[0];
+    if (first) {
+      open(first.src, first.poster, "Our Story");
+    } else {
+      document.getElementById("letter")?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 text-center">
       <div
@@ -99,7 +121,7 @@ function Hero() {
         Today is all about the most beautiful person in my life.
       </motion.p>
       <motion.button
-        onClick={scrollNext}
+        onClick={playStory}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 1.2 }}
@@ -353,7 +375,7 @@ function VideoMemories() {
       ) : (
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2">
           {videos.map((v, i) => (
-            <VideoCard key={i} src={v.src} poster={v.poster} />
+            <VideoCard key={i} src={v.src} poster={v.poster} index={i} />
           ))}
         </div>
       )}
@@ -361,9 +383,10 @@ function VideoMemories() {
   );
 }
 
-function VideoCard({ src, poster }: { src: string; poster?: string }) {
+function VideoCard({ src, poster, index }: { src: string; poster?: string; index: number }) {
   const ref = useRef<HTMLVideoElement>(null);
   const inView = useInView(ref, { amount: 0.4 });
+  const { open } = useStory();
   useEffect(() => {
     const v = ref.current;
     if (!v) return;
@@ -389,11 +412,13 @@ function VideoCard({ src, poster }: { src: string; poster?: string }) {
         className="aspect-video w-full object-cover"
       />
       <button
-        onClick={() => ref.current?.requestFullscreen()}
-        className="absolute bottom-3 right-3 grid h-10 w-10 place-items-center rounded-full bg-white/80 text-primary opacity-0 backdrop-blur-md transition-opacity group-hover:opacity-100"
-        aria-label="Fullscreen"
+        onClick={() => open(src, poster, `Memory ${index + 1}`)}
+        className="absolute inset-0 grid place-items-center bg-black/0 text-white opacity-0 transition-all group-hover:bg-black/40 group-hover:opacity-100"
+        aria-label="Play fullscreen"
       >
-        <Maximize2 className="h-4 w-4" />
+        <span className="grid h-16 w-16 place-items-center rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-glow)]">
+          <Maximize2 className="h-5 w-5" />
+        </span>
       </button>
     </motion.div>
   );
