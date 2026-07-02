@@ -205,18 +205,16 @@ function Countdown() {
             ["Minutes", c.minutes],
             ["Seconds", c.seconds],
           ].map(([label, val]) => (
-            <motion.div
-              key={label as string}
-              whileHover={{ y: -4 }}
-              className="glass rounded-2xl p-6 text-center"
-            >
-              <div className="font-serif-display text-4xl font-semibold text-gradient-romantic sm:text-5xl">
-                {String(val).padStart(2, "0")}
+            <Tilt3D key={label as string} max={20} scale={1.05} className="rounded-2xl">
+              <div className="glass rounded-2xl p-6 text-center">
+                <div className="font-serif-display text-4xl font-semibold text-gradient-romantic sm:text-5xl">
+                  {String(val).padStart(2, "0")}
+                </div>
+                <div className="mt-2 font-serif-display text-xs uppercase tracking-widest text-foreground/60">
+                  {label}
+                </div>
               </div>
-              <div className="mt-2 font-serif-display text-xs uppercase tracking-widest text-foreground/60">
-                {label}
-              </div>
-            </motion.div>
+            </Tilt3D>
           ))}
         </div>
       )}
@@ -246,12 +244,14 @@ function LoveCounter() {
           ["Minutes", minutes],
           ["Seconds", seconds],
         ].map(([l, v]) => (
-          <div key={l as string} className="glass rounded-2xl p-6 text-center">
-            <div className="font-serif-display text-4xl font-semibold text-primary sm:text-5xl">
-              {String(v).padStart(2, "0")}
+          <Tilt3D key={l as string} max={20} scale={1.05} className="rounded-2xl">
+            <div className="glass rounded-2xl p-6 text-center">
+              <div className="font-serif-display text-4xl font-semibold text-primary sm:text-5xl">
+                {String(v).padStart(2, "0")}
+              </div>
+              <div className="mt-2 font-serif-display text-xs uppercase tracking-widest text-foreground/60">{l}</div>
             </div>
-            <div className="mt-2 font-serif-display text-xs uppercase tracking-widest text-foreground/60">{l}</div>
-          </div>
+          </Tilt3D>
         ))}
       </div>
     </Section>
