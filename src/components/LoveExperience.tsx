@@ -7,10 +7,12 @@ import { BackgroundFX } from "./BackgroundFX";
 import { CursorHearts } from "./CursorHearts";
 import { MusicPlayer } from "./MusicPlayer";
 import { ThemeToggle } from "./ThemeToggle";
+import { Tilt3D } from "./Tilt3D";
 
 export function LoveExperience() {
   return (
     <main className="relative">
+      <div className="aurora" aria-hidden><span /></div>
       <BackgroundFX />
       <CursorHearts />
       <ThemeToggle />
