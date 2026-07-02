@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, createContext, useContext } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import confetti from "canvas-confetti";
 import { Heart, Gift, X, Maximize2, ChevronDown } from "lucide-react";
@@ -8,10 +8,18 @@ import { CursorHearts } from "./CursorHearts";
 import { MusicPlayer } from "./MusicPlayer";
 import { ThemeToggle } from "./ThemeToggle";
 import { Tilt3D } from "./Tilt3D";
+import { StoryPlayer } from "./StoryPlayer";
+
+type StoryCtx = { open: (src: string, poster?: string, title?: string) => void };
+const StoryContext = createContext<StoryCtx>({ open: () => {} });
+const useStory = () => useContext(StoryContext);
 
 export function LoveExperience() {
+  const [story, setStory] = useState<{ src: string; poster?: string; title?: string } | null>(null);
+  const open = (src: string, poster?: string, title?: string) => setStory({ src, poster, title });
   return (
-    <main className="relative">
+    <StoryContext.Provider value={{ open }}>
+      <main className="relative">
       <div className="aurora" aria-hidden><span /></div>
       <BackgroundFX />
       <CursorHearts />
@@ -28,14 +36,28 @@ export function LoveExperience() {
       <Reasons />
       <Surprise />
       <Ending />
-    </main>
+      <StoryPlayer
+        src={story?.src ?? null}
+        poster={story?.poster}
+        title={story?.title}
+        onClose={() => setStory(null)}
+      />
+      </main>
+    </StoryContext.Provider>
   );
 }
 
 /* --------------------------------- HERO --------------------------------- */
 function Hero() {
-  const scrollNext = () =>
-    document.getElementById("letter")?.scrollIntoView({ behavior: "smooth" });
+  const { open } = useStory();
+  const playStory = () => {
+    const first = loveConfig.videos[0];
+    if (first) {
+      open(first.src, first.poster, "Our Story");
+    } else {
+      document.getElementById("letter")?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 text-center">
       <div
@@ -99,7 +121,7 @@ function Hero() {
         Today is all about the most beautiful person in my life.
       </motion.p>
       <motion.button
-        onClick={scrollNext}
+        onClick={playStory}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 1.2 }}
