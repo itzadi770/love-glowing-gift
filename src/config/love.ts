@@ -26,9 +26,7 @@ Happy Birthday, my forever girl. ❤️`,
   ],
 
   // Drop videos into public/videos and list them here
-  videos: [
-    // { src: "/videos/memory1.mp4", poster: "/photos/hero.png" },
-  ],
+  videos: [] as Array<{ src: string; poster?: string }>,
 
   // Drop a song into public/music and set filename here
   musicFile: "/music/song.mp3",
