@@ -37,30 +37,64 @@ function Hero() {
   const scrollNext = () =>
     document.getElementById("letter")?.scrollIntoView({ behavior: "smooth" });
   return (
-    <section className="relative flex min-h-screen flex-col items-center justify-center px-6 text-center">
+    <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 text-center">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 grid place-items-center"
+        style={{ perspective: "1200px" }}
+      >
+        <div
+          className="preserve-3d relative"
+          style={{ animation: "rotate3d-heart 9s ease-in-out infinite" }}
+        >
+          <div
+            className="absolute -z-10 rounded-full"
+            style={{
+              width: "min(70vw, 620px)",
+              height: "min(70vw, 620px)",
+              transform: "translate(-50%, -50%) translateZ(-40px)",
+              left: "50%",
+              top: "50%",
+              background:
+                "conic-gradient(from 0deg, oklch(0.82 0.15 15 / 0.35), oklch(0.78 0.14 310 / 0.3), oklch(0.88 0.14 80 / 0.35), oklch(0.82 0.15 15 / 0.35))",
+              filter: "blur(50px)",
+              animation: "spin-slow 30s linear infinite",
+            }}
+          />
+          <Heart
+            className="h-[36vw] max-h-[420px] min-h-[220px] w-[36vw] max-w-[420px] min-w-[220px] fill-primary text-primary opacity-25"
+            strokeWidth={0.6}
+            style={{ filter: "drop-shadow(0 30px 60px oklch(0.7 0.2 15 / 0.4))" }}
+          />
+        </div>
+      </div>
+
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="font-serif-display text-sm uppercase tracking-[0.5em] text-primary/70"
+        className="relative font-serif-display text-sm uppercase tracking-[0.5em] text-primary/70"
       >
         A little letter, from me to you
       </motion.p>
-      <motion.h1
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.2, delay: 0.2 }}
-        className="font-script mt-6 text-6xl leading-none text-gradient-romantic sm:text-8xl md:text-9xl"
-      >
-        Happy Birthday,
-        <br />
-        My Love <span className="inline-block animate-heart-pulse">❤️</span>
-      </motion.h1>
+      <Tilt3D max={10} scale={1.02} glare={false} className="relative mt-6">
+        <motion.h1
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, delay: 0.2 }}
+          className="font-script text-6xl leading-none text-gradient-romantic sm:text-8xl md:text-9xl"
+          style={{ textShadow: "0 20px 40px oklch(0.7 0.2 15 / 0.25)" }}
+        >
+          Happy Birthday,
+          <br />
+          My Love <span className="inline-block animate-heart-pulse">❤️</span>
+        </motion.h1>
+      </Tilt3D>
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.8 }}
-        className="mt-8 max-w-xl font-serif-display text-lg italic text-foreground/80 sm:text-xl"
+        className="relative mt-8 max-w-xl font-serif-display text-lg italic text-foreground/80 sm:text-xl"
       >
         Today is all about the most beautiful person in my life.
       </motion.p>
@@ -71,7 +105,7 @@ function Hero() {
         transition={{ duration: 1, delay: 1.2 }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.97 }}
-        className="mt-12 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_100%] px-8 py-4 font-serif-display text-lg font-medium text-primary-foreground shadow-[var(--shadow-glow)] transition-[background-position] duration-1000 hover:bg-right"
+        className="relative mt-12 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_100%] px-8 py-4 font-serif-display text-lg font-medium text-primary-foreground shadow-[var(--shadow-glow)] transition-[background-position] duration-1000 hover:bg-right"
       >
         <Heart className="h-5 w-5 fill-current" />
         Open My Heart
