@@ -167,16 +167,17 @@ function LoveLetter() {
 
 /* ------------------------------- COUNTDOWN ------------------------------- */
 function useCountdown(target: string) {
-  const [now, setNow] = useState(() => Date.now());
+  const [now, setNow] = useState<number | null>(null);
   useEffect(() => {
+    setNow(Date.now());
     const id = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(id);
   }, []);
-  const diff = new Date(target).getTime() - now;
+  const diff = now === null ? 0 : new Date(target).getTime() - now;
   const done = diff <= 0;
   const abs = Math.max(0, diff);
   return {
-    done,
+    done: now !== null && done,
     days: Math.floor(abs / 86400000),
     hours: Math.floor((abs / 3600000) % 24),
     minutes: Math.floor((abs / 60000) % 60),
@@ -198,7 +199,7 @@ function Countdown() {
           Happy Birthday, {loveConfig.princessName} ❤️
         </motion.h3>
       ) : (
-        <div className="mx-auto grid max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4">
+        <div suppressHydrationWarning className="mx-auto grid max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4">
           {[
             ["Days", c.days],
             ["Hours", c.hours],
@@ -224,20 +225,21 @@ function Countdown() {
 
 /* ----------------------------- LOVE COUNTER ----------------------------- */
 function LoveCounter() {
-  const [now, setNow] = useState(() => Date.now());
+  const [now, setNow] = useState<number | null>(null);
   useEffect(() => {
+    setNow(Date.now());
     const id = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(id);
   }, []);
   const start = new Date(loveConfig.relationshipStart).getTime();
-  const diff = Math.max(0, now - start);
+  const diff = now === null ? 0 : Math.max(0, now - start);
   const days = Math.floor(diff / 86400000);
   const hours = Math.floor((diff / 3600000) % 24);
   const minutes = Math.floor((diff / 60000) % 60);
   const seconds = Math.floor((diff / 1000) % 60);
   return (
     <Section id="together" title="We've Been Together For…" subtitle="Every second, still my favorite.">
-      <div className="mx-auto grid max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4">
+      <div suppressHydrationWarning className="mx-auto grid max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4">
         {[
           ["Days", days],
           ["Hours", hours],
