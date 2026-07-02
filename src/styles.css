@@ -71,36 +71,36 @@
 
 :root {
   --radius: 1rem;
-  --font-script: "Bebas Neue", "Oswald", "Great Vibes", cursive;
-  --font-serif: "Bebas Neue", "Oswald", ui-serif, Georgia, serif;
+  --font-script: "Great Vibes", "Dancing Script", cursive;
+  --font-serif: "Cormorant Garamond", "Playfair Display", ui-serif, Georgia, serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  /* Netflix palette */
-  --rose: oklch(0.55 0.22 27);        /* Netflix red #E50914 */
-  --blush: oklch(0.35 0.18 27);       /* deep blood red */
-  --lavender: oklch(0.22 0.02 260);   /* charcoal */
-  --cream: oklch(0.14 0.005 260);     /* near-black */
-  --gold: oklch(0.98 0 0);            /* white accent */
+  /* Romantic pastel palette */
+  --rose: oklch(0.78 0.14 15);         /* soft rose */
+  --blush: oklch(0.88 0.07 15);        /* blush pink */
+  --lavender: oklch(0.82 0.08 300);    /* lavender */
+  --cream: oklch(0.97 0.02 85);        /* cream */
+  --gold: oklch(0.82 0.14 85);         /* warm gold */
 
-  --background: oklch(0.08 0.005 260);
-  --foreground: oklch(0.97 0 0);
-  --card: oklch(0.14 0.006 260 / 75%);
-  --card-foreground: oklch(0.97 0 0);
-  --popover: oklch(0.1 0.005 260);
-  --popover-foreground: oklch(0.97 0 0);
-  --primary: oklch(0.55 0.22 27);
-  --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.2 0.01 260);
-  --secondary-foreground: oklch(0.97 0 0);
-  --muted: oklch(0.18 0.008 260);
-  --muted-foreground: oklch(0.72 0.005 260);
-  --accent: oklch(0.55 0.22 27);
-  --accent-foreground: oklch(0.99 0 0);
-  --destructive: oklch(0.6 0.24 27);
-  --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 10%);
-  --ring: oklch(0.55 0.22 27);
+  --background: oklch(0.98 0.015 340);
+  --foreground: oklch(0.26 0.05 340);
+  --card: oklch(1 0 0 / 55%);
+  --card-foreground: oklch(0.26 0.05 340);
+  --popover: oklch(0.99 0.01 340);
+  --popover-foreground: oklch(0.26 0.05 340);
+  --primary: oklch(0.7 0.16 350);
+  --primary-foreground: oklch(0.99 0.005 340);
+  --secondary: oklch(0.94 0.03 320);
+  --secondary-foreground: oklch(0.3 0.05 340);
+  --muted: oklch(0.95 0.02 340);
+  --muted-foreground: oklch(0.5 0.04 340);
+  --accent: oklch(0.82 0.14 85);
+  --accent-foreground: oklch(0.25 0.05 40);
+  --destructive: oklch(0.65 0.2 25);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.7 0.1 340 / 20%);
+  --input: oklch(0.7 0.1 340 / 20%);
+  --ring: oklch(0.7 0.16 350);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -115,27 +115,30 @@
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
 
-  --gradient-romantic: radial-gradient(ellipse at top, oklch(0.16 0.04 27) 0%, oklch(0.06 0.005 260) 55%, oklch(0.04 0 0) 100%);
-  --gradient-glow: radial-gradient(circle at 50% 0%, oklch(0.55 0.22 27 / 0.55), transparent 60%);
-  --shadow-soft: 0 30px 80px -20px oklch(0 0 0 / 0.85);
-  --shadow-glow: 0 0 40px oklch(0.55 0.22 27 / 0.75), 0 0 100px oklch(0.55 0.22 27 / 0.4);
+  --gradient-romantic: radial-gradient(ellipse at 20% 0%, oklch(0.94 0.06 340) 0%, transparent 55%),
+                       radial-gradient(ellipse at 80% 20%, oklch(0.93 0.06 300) 0%, transparent 55%),
+                       radial-gradient(ellipse at 50% 100%, oklch(0.96 0.05 85) 0%, transparent 55%),
+                       linear-gradient(180deg, oklch(0.98 0.015 340), oklch(0.97 0.02 320));
+  --gradient-glow: radial-gradient(circle at 50% 0%, oklch(0.85 0.14 350 / 0.55), transparent 60%);
+  --shadow-soft: 0 30px 80px -20px oklch(0.5 0.15 340 / 0.35);
+  --shadow-glow: 0 0 40px oklch(0.78 0.16 350 / 0.6), 0 0 100px oklch(0.82 0.14 85 / 0.35);
 }
 
 .dark {
-  --background: oklch(0.04 0 0);
-  --foreground: oklch(0.98 0 0);
-  --card: oklch(0.11 0.005 260 / 80%);
-  --card-foreground: oklch(0.98 0 0);
-  --primary: oklch(0.58 0.23 27);
-  --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.16 0.01 260);
-  --muted: oklch(0.14 0.005 260);
-  --muted-foreground: oklch(0.7 0.005 260);
-  --accent: oklch(0.58 0.23 27);
-  --accent-foreground: oklch(0.99 0 0);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.58 0.23 27);
+  --background: oklch(0.16 0.04 320);
+  --foreground: oklch(0.96 0.02 340);
+  --card: oklch(0.24 0.05 320 / 60%);
+  --card-foreground: oklch(0.96 0.02 340);
+  --primary: oklch(0.78 0.16 350);
+  --primary-foreground: oklch(0.16 0.04 340);
+  --secondary: oklch(0.24 0.05 320);
+  --muted: oklch(0.22 0.04 320);
+  --muted-foreground: oklch(0.78 0.03 340);
+  --accent: oklch(0.85 0.14 85);
+  --accent-foreground: oklch(0.2 0.04 40);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.78 0.16 350);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -150,10 +153,13 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
 
-  --gradient-romantic: radial-gradient(ellipse at top, oklch(0.14 0.05 27) 0%, oklch(0.04 0 0) 60%, oklch(0.02 0 0) 100%);
-  --gradient-glow: radial-gradient(circle at 50% 0%, oklch(0.58 0.23 27 / 0.55), transparent 60%);
-  --shadow-soft: 0 30px 80px -20px oklch(0 0 0 / 0.9);
-  --shadow-glow: 0 0 50px oklch(0.58 0.23 27 / 0.8), 0 0 120px oklch(0.58 0.23 27 / 0.4);
+  --gradient-romantic: radial-gradient(ellipse at 20% 0%, oklch(0.28 0.09 340) 0%, transparent 55%),
+                       radial-gradient(ellipse at 80% 20%, oklch(0.24 0.08 300) 0%, transparent 55%),
+                       radial-gradient(ellipse at 50% 100%, oklch(0.22 0.06 40) 0%, transparent 55%),
+                       linear-gradient(180deg, oklch(0.14 0.04 320), oklch(0.1 0.03 320));
+  --gradient-glow: radial-gradient(circle at 50% 0%, oklch(0.78 0.18 350 / 0.5), transparent 60%);
+  --shadow-soft: 0 30px 80px -20px oklch(0 0 0 / 0.6);
+  --shadow-glow: 0 0 50px oklch(0.78 0.18 350 / 0.75), 0 0 120px oklch(0.85 0.14 85 / 0.35);
 }
 
 @layer base {
@@ -178,8 +184,7 @@
 @utility font-script {
   font-family: var(--font-script);
   font-weight: 400;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  letter-spacing: 0.005em;
 }
 
 @utility font-serif-display {
@@ -200,7 +205,7 @@
 }
 
 @utility text-gradient-romantic {
-  background: linear-gradient(135deg, oklch(0.65 0.24 27), oklch(0.98 0 0) 60%, oklch(0.55 0.22 27));
+  background: linear-gradient(135deg, oklch(0.72 0.18 350), oklch(0.82 0.14 85) 55%, oklch(0.7 0.15 320));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -229,10 +234,10 @@
 
 .paper-texture {
   background-image:
-    radial-gradient(oklch(1 0 0 / 0.04) 1px, transparent 1px),
-    linear-gradient(135deg, oklch(0.12 0.01 260), oklch(0.08 0.005 260));
+    radial-gradient(oklch(0.5 0.1 340 / 0.05) 1px, transparent 1px),
+    linear-gradient(135deg, oklch(0.99 0.02 85), oklch(0.97 0.03 340));
   background-size: 6px 6px, 100% 100%;
-  border: 1px solid oklch(0.55 0.22 27 / 0.35);
+  border: 1px solid oklch(0.78 0.14 350 / 0.35);
 }
 
 /* Aurora blobs — soft moving color light behind content */
@@ -257,25 +262,25 @@
   animation: drift 26s ease-in-out infinite alternate;
 }
 .aurora::before {
-  background: radial-gradient(circle, oklch(0.55 0.24 27 / 0.9), transparent 60%);
+  background: radial-gradient(circle, oklch(0.85 0.16 350 / 0.75), transparent 60%);
   top: -20%;
   left: -10%;
 }
 .aurora::after {
-  background: radial-gradient(circle, oklch(0.35 0.2 27 / 0.85), transparent 60%);
+  background: radial-gradient(circle, oklch(0.82 0.12 300 / 0.7), transparent 60%);
   bottom: -20%;
   right: -10%;
   animation-delay: -8s;
 }
 .aurora > span {
-  background: radial-gradient(circle, oklch(0.2 0.02 260 / 0.9), transparent 60%);
+  background: radial-gradient(circle, oklch(0.9 0.14 85 / 0.6), transparent 60%);
   top: 30%;
   left: 40%;
   animation-delay: -14s;
 }
-.dark .aurora::before { opacity: 0.4; }
-.dark .aurora::after { opacity: 0.4; }
-.dark .aurora > span { opacity: 0.3; }
+.dark .aurora::before { opacity: 0.5; }
+.dark .aurora::after { opacity: 0.45; }
+.dark .aurora > span { opacity: 0.4; }
 
 @keyframes drift {
   0%   { transform: translate3d(0, 0, 0) scale(1); }
