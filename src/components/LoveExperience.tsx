@@ -95,17 +95,17 @@ function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="relative font-sans text-xs uppercase tracking-[0.5em] text-primary"
+        className="relative font-sans text-xs uppercase tracking-[0.5em] text-primary/80"
       >
-        N · A Lovable Original
+        ✦ A Little Love Letter ✦
       </motion.p>
       <Tilt3D max={10} scale={1.02} glare={false} className="relative mt-6">
         <motion.h1
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, delay: 0.2 }}
-          className="font-script text-6xl leading-[0.9] text-gradient-romantic sm:text-8xl md:text-[10rem]"
-          style={{ textShadow: "0 20px 60px oklch(0.55 0.24 27 / 0.55)" }}
+          className="font-script text-6xl leading-[1.05] text-gradient-romantic sm:text-8xl md:text-[9rem]"
+          style={{ textShadow: "0 20px 60px oklch(0.78 0.14 350 / 0.55)" }}
         >
           Happy Birthday,
           <br />
@@ -127,10 +127,10 @@ function Hero() {
         transition={{ duration: 1, delay: 1.2 }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.97 }}
-        className="relative mt-12 inline-flex items-center gap-2 rounded-md bg-primary px-8 py-4 font-sans text-lg font-semibold uppercase tracking-wider text-primary-foreground shadow-[var(--shadow-glow)] transition-transform hover:bg-primary/90"
+        className="relative mt-12 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_100%] px-10 py-5 font-serif-display text-lg font-medium tracking-wide text-primary-foreground shadow-[var(--shadow-glow)] transition-[background-position] duration-1000 hover:bg-right"
       >
         <Heart className="h-5 w-5 fill-current" />
-        ▶ Play Our Story
+        Open My Heart
       </motion.button>
       <motion.div
         animate={{ y: [0, 10, 0] }}
