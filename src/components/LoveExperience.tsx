@@ -145,15 +145,21 @@ function LoveLetter() {
         initial={{ opacity: 0, y: 40, rotate: -1 }}
         animate={inView ? { opacity: 1, y: 0, rotate: -1.2 } : {}}
         transition={{ duration: 1 }}
-        className="paper-texture mx-auto max-w-2xl rounded-2xl p-8 sm:p-12 shadow-[0_30px_80px_-30px_oklch(0.5_0.15_15/0.4)]"
-        style={{ boxShadow: "var(--shadow-soft), inset 0 0 60px oklch(0.85 0.08 40 / 0.15)" }}
+        className="mx-auto max-w-2xl"
       >
-        <p className="font-script text-3xl text-primary sm:text-4xl">My darling,</p>
-        <pre className="mt-6 whitespace-pre-wrap font-serif-display text-lg leading-relaxed text-foreground/85 sm:text-xl">
-          {typed}
-          <span className="ml-1 inline-block h-5 w-[2px] animate-pulse bg-primary align-middle" />
-        </pre>
-        <p className="mt-8 text-right font-script text-3xl text-primary">— Yours, always</p>
+        <Tilt3D max={8} scale={1.02} className="rounded-2xl">
+          <div
+            className="paper-texture rounded-2xl p-8 sm:p-12"
+            style={{ boxShadow: "var(--shadow-soft), inset 0 0 60px oklch(0.85 0.08 40 / 0.15)" }}
+          >
+            <p className="font-script text-3xl text-primary sm:text-4xl">My darling,</p>
+            <pre className="mt-6 whitespace-pre-wrap font-serif-display text-lg leading-relaxed text-foreground/85 sm:text-xl">
+              {typed}
+              <span className="ml-1 inline-block h-5 w-[2px] animate-pulse bg-primary align-middle" />
+            </pre>
+            <p className="mt-8 text-right font-script text-3xl text-primary">— Yours, always</p>
+          </div>
+        </Tilt3D>
       </motion.div>
     </Section>
   );
