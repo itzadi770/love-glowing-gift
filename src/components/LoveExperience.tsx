@@ -73,28 +73,28 @@ function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="relative font-serif-display text-sm uppercase tracking-[0.5em] text-primary/70"
+        className="relative font-sans text-xs uppercase tracking-[0.5em] text-primary"
       >
-        A little letter, from me to you
+        N · A Lovable Original
       </motion.p>
       <Tilt3D max={10} scale={1.02} glare={false} className="relative mt-6">
         <motion.h1
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, delay: 0.2 }}
-          className="font-script text-6xl leading-none text-gradient-romantic sm:text-8xl md:text-9xl"
-          style={{ textShadow: "0 20px 40px oklch(0.7 0.2 15 / 0.25)" }}
+          className="font-script text-6xl leading-[0.9] text-gradient-romantic sm:text-8xl md:text-[10rem]"
+          style={{ textShadow: "0 20px 60px oklch(0.55 0.24 27 / 0.55)" }}
         >
           Happy Birthday,
           <br />
-          My Love <span className="inline-block animate-heart-pulse">❤️</span>
+          My Love <span className="inline-block animate-heart-pulse">❤</span>
         </motion.h1>
       </Tilt3D>
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.8 }}
-        className="relative mt-8 max-w-xl font-serif-display text-lg italic text-foreground/80 sm:text-xl"
+        className="relative mt-8 max-w-xl font-sans text-base text-foreground/75 sm:text-lg"
       >
         Today is all about the most beautiful person in my life.
       </motion.p>
@@ -105,10 +105,10 @@ function Hero() {
         transition={{ duration: 1, delay: 1.2 }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.97 }}
-        className="relative mt-12 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_100%] px-8 py-4 font-serif-display text-lg font-medium text-primary-foreground shadow-[var(--shadow-glow)] transition-[background-position] duration-1000 hover:bg-right"
+        className="relative mt-12 inline-flex items-center gap-2 rounded-md bg-primary px-8 py-4 font-sans text-lg font-semibold uppercase tracking-wider text-primary-foreground shadow-[var(--shadow-glow)] transition-transform hover:bg-primary/90"
       >
         <Heart className="h-5 w-5 fill-current" />
-        Open My Heart
+        ▶ Play Our Story
       </motion.button>
       <motion.div
         animate={{ y: [0, 10, 0] }}
