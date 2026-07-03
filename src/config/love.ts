@@ -1,3 +1,5 @@
+import memoryVideoAsset from "@/assets/memory-01.mp4.asset.json";
+
 // ✨ EDIT ME — All personal content lives here.
 export const loveConfig = {
   herName: "My Love",
@@ -25,9 +27,9 @@ Happy Birthday, my forever girl. ❤️`,
     { src: "/photos/collage.png", caption: "Forever & always 🤍" },
   ],
 
-  // Drop videos into public/videos and list them here
+  // Videos are served from the bundled asset CDN so they work after publishing/deployment.
   videos: [
-    { src: "/videos/memory-01.mp4" },
+    { src: memoryVideoAsset.url },
   ] as Array<{ src: string; poster?: string }>,
 
   // Drop a song into public/music and set filename here
